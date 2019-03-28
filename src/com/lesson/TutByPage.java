@@ -14,7 +14,7 @@ public class TutByPage {
 
     public WebElement password;
 
-    @FindBy(className = "auth__enter")
+    @FindBy(css = "input.button.auth__enter")
     public WebElement enterButton;
 
     @FindBy(className = "uname")
