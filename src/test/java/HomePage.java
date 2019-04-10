@@ -1,34 +1,22 @@
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 
 public class HomePage {
+    final WebDriver driver = SingletonBrowserClass.getInstanceOfSingletonBrowserClass().getDriver();
 
-    private WebElement exit;
-    private WebElement exitPopup;
-    private WebElement enterPopup;
-
-    public HomePage() {
-        SingletonBrowserClass sbc= SingletonBrowserClass.getInstanceOfSingletonBrowserClass();
-        final WebDriver driver = sbc.getDriver();
-
-        exit = driver.findElement(By.xpath("//a[contains(text(),'Выйти')]"));
-        exitPopup = driver.findElement(By.className("uname"));
-    }
-
+    private By exitBy = By.xpath("//a[contains(text(),'Выйти')]");
+    private By exitPopupBy = By.className("uname");
+    private By enterPopupBy = By.cssSelector("a[data-target-popup='authorize-form']");
 
     public void logout() {
-        exitPopup.click();
-        exit.click();
+        driver.findElement(exitPopupBy).click();
+        driver.findElement(exitBy).click();
     }
 
     public boolean isEnterPopupExists() {
-        SingletonBrowserClass sbc= SingletonBrowserClass.getInstanceOfSingletonBrowserClass();
-        final WebDriver driver = sbc.getDriver();
-        enterPopup = driver.findElement(By.cssSelector("a[data-target-popup='authorize-form']"));
-        return enterPopup.isDisplayed();
+        return driver.findElement(enterPopupBy).isDisplayed();
     }
 }
 
